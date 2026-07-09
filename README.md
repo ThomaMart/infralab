@@ -2,6 +2,8 @@
 
 Infrastructure DevOps Lab
 
+![Terraform](https://github.com/ThomaMart/infralab/actions/workflows/terraform.yml/badge.svg)
+
 ## Technologies
 
 - Docker
