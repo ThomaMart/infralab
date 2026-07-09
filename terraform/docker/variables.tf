@@ -1,9 +1,9 @@
 variable "container_name" {
-  type = string
+  type    = string
   default = "terraform-nginx"
 }
 
 variable "external_port" {
-  type = number
+  type    = number
   default = 8088
 }
