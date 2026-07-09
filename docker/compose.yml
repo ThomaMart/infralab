@@ -4,8 +4,12 @@ services:
     image: grafana/grafana:latest
     container_name: grafana
     restart: unless-stopped
+    env_file:
+      - .env
     ports:
       - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
 
   prometheus:
     image: prom/prometheus:latest
@@ -23,9 +27,5 @@ services:
     ports:
       - "9100:9100"
 
-  loki:
-    image: grafana/loki:latest
-    container_name: loki
-    restart: unless-stopped
-    ports:
-      - "3100:3100"
+volumes:
+  grafana-data:
