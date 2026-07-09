@@ -16,4 +16,15 @@ Infrastructure DevOps Lab
 - Grafana
 - Loki
 
+## Development
+
+```bash
+make fmt
+make validate
+make plan
+make apply
+make destroy
+make check
+```
+
 Work in progress 🚀
