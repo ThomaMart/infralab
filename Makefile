@@ -2,7 +2,7 @@
 # InfraLab
 ################################################################################
 
-TF_DIR=terraform/proxmox
+TF_DIR=terraform/environments/home
 
 PROXMOX_HOST=proxmox
 REMOTE_DIR=/root/infralab
