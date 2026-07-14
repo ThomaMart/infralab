@@ -14,11 +14,6 @@ variable "node_name" {
   type = string
 }
 
-variable "cpu_type" {
-  type    = string
-  default = "x86-64-v2-AES"
-}
-
 variable "memory" {
   type = number
 }
@@ -41,4 +36,20 @@ variable "username" {
 
 variable "ssh_public_key" {
   type = string
+}
+
+
+variable "cpu_type" {
+  type    = string
+  default = "x86-64-v2-AES"
+}
+
+variable "on_boot" {
+  type    = bool
+  default = true
+}
+
+variable "start_on_create" {
+  type    = bool
+  default = true
 }
