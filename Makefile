@@ -7,6 +7,8 @@ TF_DIR=terraform/proxmox
 PROXMOX_HOST=proxmox
 REMOTE_DIR=/root/infralab
 
+ENV_FILE=env/env.sh
+
 ################################################################################
 
 .PHONY: \
@@ -24,23 +26,22 @@ fmt:
 	cd $(TF_DIR) && terraform fmt -recursive
 
 validate:
-	cd $(TF_DIR) && terraform validate
+	@bash -c "source $(ENV_FILE) && cd $(TF_DIR) && terraform validate"
 
 plan:
-	cd $(TF_DIR) && terraform plan
+	@bash -c "source $(ENV_FILE) && cd $(TF_DIR) && terraform plan"
 
 apply:
-	cd $(TF_DIR) && terraform apply
+	@bash -c "source $(ENV_FILE) && cd $(TF_DIR) && terraform apply"
 
 destroy:
-	cd $(TF_DIR) && terraform destroy
+	@bash -c "source $(ENV_FILE) && cd $(TF_DIR) && terraform destroy"
 
 check: fmt validate plan
 
 ################################################################################
 
 template:
-
 	@echo ""
 	@echo "==> Preparing remote directory..."
 	@ssh $(PROXMOX_HOST) "mkdir -p $(REMOTE_DIR)"
