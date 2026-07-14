@@ -16,6 +16,6 @@ module "debian_dev" {
   username       = var.username
   ssh_public_key = var.ssh_public_key
 
-  on_boot        = true
+  on_boot         = true
   start_on_create = true
 }

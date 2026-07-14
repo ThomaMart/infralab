@@ -38,6 +38,8 @@ __pycache__/
 .venv/
 venv/
 ENV/
+env/*.env
+!env/*.env.example
 
 # Packaging
 build/
@@ -134,6 +136,12 @@ Thumbs.db
 
 tmp/
 temp/
+node_modules/
+**/.terraform/
+.terraform/
+dist/
+build/
+coverage/
 
 ################################################################################
 # Terraform lock file

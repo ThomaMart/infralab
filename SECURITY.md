@@ -2,105 +2,89 @@
 
 Thank you for helping keep InfraLab secure.
 
-The security of this project is taken seriously. If you discover a vulnerability, please report it responsibly.
+Security is a core principle of InfraLab. If you discover a vulnerability, please report it responsibly so it can be investigated and fixed before public disclosure.
 
----
+## Supported Versions
 
-# Supported Versions
+The current support policy is as follows.
 
-The following table describes the current support policy.
+| Version           | Supported |
+| ----------------- | :-------: |
+| main              |     ✅     |
+| Previous releases |     ❌     |
 
-| Version | Supported |
-|----------|-----------|
-| main     | ✅ |
-| Previous releases | ❌ |
+At this stage of the project, only the latest development branch is actively maintained.
 
-Only the latest development version is currently supported.
+A long-term support policy will be introduced once stable releases become available.
 
-As the project matures, a version support policy will be introduced.
+## Reporting a Vulnerability
 
----
+Please **do not** report security vulnerabilities through public GitHub issues.
 
-# Reporting a Vulnerability
+Instead, report them privately and include as much information as possible:
 
-Please **do not open a public GitHub Issue** for security vulnerabilities.
+* affected component;
+* InfraLab version;
+* Terraform version;
+* Proxmox VE version;
+* operating system;
+* steps to reproduce;
+* proof of concept (if applicable);
+* potential impact.
 
-Instead, report vulnerabilities privately.
+## Response Process
 
-Include as much information as possible:
+Every vulnerability report follows the same process.
 
-- affected component
-- InfraLab version
-- Terraform version
-- Proxmox VE version
-- operating system
-- steps to reproduce
-- proof of concept (if applicable)
-- potential impact
-
----
-
-# Response Process
-
-Every report will follow this process.
-
-1. Acknowledge receipt.
+1. Acknowledge the report.
 2. Reproduce the issue.
-3. Assess severity.
-4. Develop a fix.
+3. Assess its severity.
+4. Develop and validate a fix.
 5. Publish the fix.
 6. Credit the reporter (if desired).
 
----
+## Scope
 
-# Scope
+Security reports may concern:
 
-Security reports may include issues involving:
+* Terraform modules;
+* infrastructure provisioning;
+* FastAPI services;
+* Docker images and containers;
+* Ansible playbooks;
+* GitHub Actions workflows;
+* secrets management;
+* authentication;
+* authorization;
+* software supply chain.
 
-- Terraform modules
-- Infrastructure provisioning
-- FastAPI
-- Docker
-- Ansible
-- GitHub Actions
-- Secrets management
-- Authentication
-- Authorization
-- Supply chain security
+## Out of Scope
 
----
+The following issues are generally considered outside the scope of this policy:
 
-# Out of Scope
+* vulnerabilities in unsupported third-party software;
+* issues requiring physical access;
+* local environment misconfiguration;
+* social engineering attacks.
 
-The following are generally considered out of scope:
+## Security Principles
 
-- Vulnerabilities in unsupported third-party software.
-- Issues requiring physical access.
-- Local environment misconfiguration.
-- Social engineering.
+InfraLab follows a **Security by Design** approach.
 
----
+The project is built around the following principles:
 
-# Security Principles
+* Least Privilege;
+* Infrastructure as Code;
+* Secure Defaults;
+* Secrets are never committed to the repository;
+* Single Responsibility Principle;
+* Dependency management;
+* Continuous security scanning.
 
-InfraLab follows a "Security by Design" approach.
-
-Core principles include:
-
-- Least Privilege
-- Infrastructure as Code
-- Secure Defaults
-- Secrets are never committed
-- Principle of Single Responsibility
-- Dependency updates
-- Continuous security scanning
-
----
-
-# Disclosure Policy
+## Disclosure Policy
 
 Responsible disclosure is appreciated.
 
-Please allow time for a fix before publicly disclosing a vulnerability.
+Please allow sufficient time for a fix before publicly disclosing any security vulnerability.
 
 Thank you for helping improve the security of InfraLab.

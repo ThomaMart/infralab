@@ -1,146 +1,132 @@
 # Contributing to InfraLab
 
-First of all, thank you for considering contributing to InfraLab.
+Thank you for your interest in contributing to InfraLab.
 
-InfraLab aims to become a production-ready Infrastructure as Code framework for Proxmox.
+InfraLab is an open-source Infrastructure as Code framework built around Proxmox Virtual Environment. Every contribution should improve the project's quality, reliability and maintainability.
 
-Every contribution should improve the project in terms of:
+## Project Principles
 
-- Simplicity
-- Reliability
-- Security
-- Documentation
-- Maintainability
+InfraLab is built around a few core principles.
 
----
+* Infrastructure as Code
+* Simplicity
+* Security by Design
+* Reproducibility
+* Documentation
+* Modularity
 
-# Project Philosophy
+## Architecture Philosophy
 
-InfraLab follows a few simple principles.
+Each tool has a single responsibility.
 
-## Infrastructure as Code First
+| Component  | Responsibility              |
+| ---------- | --------------------------- |
+| Terraform  | Provision infrastructure    |
+| Cloud-Init | Initialize virtual machines |
+| Ansible    | Configure operating systems |
+| Docker     | Run services                |
+| FastAPI    | Provide the management API  |
 
-If an infrastructure component can be managed through code, it should never require manual configuration.
+Business logic belongs to Terraform stacks, while Terraform modules remain reusable building blocks.
 
-## One Responsibility
+## Development Workflow
 
-Every component has a single responsibility.
-
-Examples:
-
-- Terraform provisions infrastructure.
-- Cloud-Init initializes virtual machines.
-- Ansible configures systems.
-- Docker runs services.
-
-## Documentation is part of the code
-
-Every significant change must include the required documentation.
-
-Code without documentation is considered incomplete.
-
----
-
-# Development Workflow
-
-1. Create a feature branch.
-
-Example:
+Create a dedicated branch.
 
 ```bash
 git checkout -b feature/my-feature
 ```
 
-2. Commit frequently using Conventional Commits.
+Use Conventional Commits.
 
-Example:
+Examples:
 
 ```text
 feat(terraform): add vm module
 
-fix(api): validate deployment request
+fix(ansible): improve inventory
 
-docs(readme): update installation guide
+docs(readme): update quick start
 ```
 
-3. Open a Pull Request.
+Before opening a Pull Request:
 
-4. Wait for review before merging.
+1. Run formatting tools.
+2. Validate Terraform.
+3. Run pre-commit.
+4. Update documentation if required.
 
----
+Open a Pull Request only after all checks succeed.
 
-# Repository Structure
+## Repository Structure
 
 ```text
-app/            REST API and CLI
-ansible/        Host provisioning
-docker/         Docker services
-docs/           Documentation
-monitoring/     Observability
-scripts/        Utility scripts
-terraform/      Infrastructure as Code
-tests/          Test suites
+ansible/       Configuration management
+app/           FastAPI application
+docker/        Container services
+docs/          Documentation
+env/           Environment examples
+monitoring/    Observability
+scripts/       Automation scripts
+terraform/     Infrastructure as Code
+tests/         Test suites
 ```
 
----
+## Coding Standards
 
-# Terraform Guidelines
+InfraLab follows:
 
-Terraform modules must:
+* EditorConfig
+* Conventional Commits
+* Semantic Versioning
+* Infrastructure as Code
+* Security by Design
 
-- remain generic
-- contain one responsibility
-- never include business logic
+All code must:
 
-Business logic belongs to stacks.
+* be production-ready;
+* remain modular;
+* avoid duplication;
+* include documentation when appropriate.
 
----
+## Terraform Guidelines
 
-# Coding Standards
+Terraform modules should:
 
-The project follows:
+* remain reusable;
+* expose only generic variables;
+* avoid business logic;
+* declare providers explicitly when required.
 
-- EditorConfig
-- Conventional Commits
-- Semantic Versioning
-- Infrastructure as Code
-- Security by Design
+Stacks assemble modules to build complete infrastructures.
 
----
+## Pull Requests
 
-# Pull Requests
+Each Pull Request should:
 
-Every Pull Request should:
+* focus on a single feature or fix;
+* pass all CI checks;
+* include documentation updates when applicable;
+* keep changes as small and reviewable as possible.
 
-- compile
-- pass validation
-- include documentation when necessary
-- remain focused on one feature
+## Reporting Issues
 
-Large Pull Requests are discouraged.
+When opening an issue, please include:
 
----
+* InfraLab version
+* Terraform version
+* Proxmox VE version
+* Operating system
+* Steps to reproduce
+* Expected behavior
+* Actual behavior
 
-# Reporting Issues
+## Questions
 
-When reporting an issue, please include:
+Before opening a new issue, please check:
 
-- InfraLab version
-- Terraform version
-- Proxmox version
-- Linux distribution
-- Steps to reproduce
-- Expected behavior
-- Actual behavior
-
----
-
-# Questions
-
-Before opening an issue, please check:
-
-- README
-- Documentation
-- Existing issues
+* README.md
+* Project documentation
+* Existing GitHub issues
 
 Thank you for helping improve InfraLab.

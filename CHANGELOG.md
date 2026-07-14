@@ -2,42 +2,45 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
-
-This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
----
+The format follows **Keep a Changelog** and the project adheres to **Semantic Versioning**.
 
 ## [Unreleased]
 
 ### Added
 
-- Initial repository structure
-- Foundation architecture
-- Terraform project
-- Debian 13 Golden Template automation
-- VM Terraform module
-- Monitoring directory
-- Docker directory
-- FastAPI application skeleton
-- Documentation structure
-- Engineering standards
-- Repository governance
+* Repository foundation
+* Terraform project structure
+* Modular Terraform architecture
+* Environment separation (`dev`, `home`, `prod`)
+* Debian 13 Golden Template automation
+* Proxmox VM module
+* Docker project structure
+* Monitoring project structure
+* FastAPI application skeleton
+* Documentation structure
+* Engineering standards
+* GitHub project configuration
 
 ### Changed
 
-- Repository reorganized for long-term maintainability
+* Reorganized repository layout for long-term maintainability
+* Standardized project architecture
+* Improved development workflow
 
 ### Security
 
-- Added repository security policy
-- Added secure Git configuration
-- Added repository ignore rules
+* Added security policy
+* Added repository ignore rules
+* Added development quality controls
 
----
+## [0.1.0] - 2026-07-14
 
-## [0.1.0] - Initial development
+### Initial Release
 
-### Added
+#### Added
 
-- Initial project creation
+* Initial repository
+* Foundation architecture
+* Terraform provisioning
+* Cloud-Init integration
+* Debian Golden Template automation

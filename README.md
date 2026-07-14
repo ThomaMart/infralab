@@ -1,184 +1,201 @@
-# 🚀 InfraLab
+# InfraLab
 
 <p align="center">
 
-![Terraform](https://img.shields.io/badge/Terraform-1.13+-623CE4?style=for-the-badge&logo=terraform)
+![CI](https://img.shields.io/github/actions/workflow/status/ThomaMart/infralab/ci.yml?branch=main&style=for-the-badge&label=CI)
+
+![Terraform](https://img.shields.io/badge/Terraform-1.15+-623CE4?style=for-the-badge&logo=terraform)
+
 ![Proxmox](https://img.shields.io/badge/Proxmox-VE-E57000?style=for-the-badge&logo=proxmox)
+
 ![Debian](https://img.shields.io/badge/Debian-13-A81D33?style=for-the-badge&logo=debian)
+
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker)
+
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?style=for-the-badge&logo=python)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.116-009688?style=for-the-badge&logo=fastapi)
-![Grafana](https://img.shields.io/badge/Grafana-Ready-F46800?style=for-the-badge&logo=grafana)
-![Prometheus](https://img.shields.io/badge/Prometheus-Ready-E6522C?style=for-the-badge&logo=prometheus)
-![License](https://img.shields.io/github/license/USERNAME/InfraLab?style=for-the-badge)
+
+![FastAPI](https://img.shields.io/badge/FastAPI-Ready-009688?style=for-the-badge&logo=fastapi)
+
+![License](https://img.shields.io/github/license/ThomaMart/infralab?style=for-the-badge)
 
 </p>
 
----
+InfraLab is an open-source Infrastructure as Code framework built around Proxmox Virtual Environment.
 
-## 📖 Overview
+Its objective is to provide a reproducible platform to deploy, manage and evolve complete virtual infrastructures using modern DevOps practices.
 
-**InfraLab** is a personal Infrastructure as Code (IaC) laboratory designed to build, deploy and manage a complete virtual infrastructure using modern DevOps tools.
+The project is designed as:
 
-The project demonstrates a production-inspired workflow based on:
+* an Infrastructure as Code framework;
+* a reusable Proxmox deployment platform;
+* a technical portfolio;
+* a foundation for future infrastructure projects.
 
-- Infrastructure as Code (Terraform)
-- Proxmox Virtual Environment
-- Debian Cloud Images
-- Cloud-Init
-- Docker
-- Python / FastAPI
-- Observability with Prometheus & Grafana
+## Features
 
-The objective is to reproduce the lifecycle of a modern infrastructure from provisioning to application deployment.
+* Terraform modules
+* Reusable infrastructure stacks
+* Environment separation (dev, home, prod)
+* Debian 13 Golden Template
+* Cloud-Init provisioning
+* Proxmox API integration
+* SSH key injection
+* Docker-ready virtual machines
+* Ansible provisioning pipeline
+* Monitoring stack (Prometheus, Grafana, Loki)
+* FastAPI management API (planned)
 
----
-
-# 🏗 Architecture
+## Architecture
 
 ```text
-                Internet
-                    │
-            ┌──────────────┐
-            │   Proxmox VE │
-            └──────┬───────┘
-                   │
-          Debian Golden Template
-                   │
-          Terraform Provisioning
-                   │
-      ┌────────────┴────────────┐
-      │                         │
-   Docker Host             Monitoring
-      │                         │
- FastAPI Apps      Prometheus / Grafana
+Developer PC
+        │
+        ▼
+     GitHub
+        │
+        ▼
+ GitHub Actions
+        │
+        ▼
+Terraform
+        │
+        ▼
+ Proxmox VE
+        │
+        ▼
+ Virtual Machines
+        │
+        ├── Docker Hosts
+        ├── Monitoring
+        ├── Applications
+        └── Future Kubernetes
 ```
 
----
-
-# ✨ Features
-
-- ✅ Automated Debian Cloud Template
-- ✅ Terraform VM provisioning
-- ✅ Cloud-Init integration
-- ✅ SSH Key Injection
-- ✅ Proxmox API Token Authentication
-- ✅ Docker deployment
-- ✅ FastAPI services
-- ✅ Monitoring stack
-- ✅ Infrastructure reproducibility
-
----
-
-# 📂 Project Structure
+## Repository Structure
 
 ```text
-InfraLab/
-│
+.
+├── ansible/
 ├── app/
 ├── docker/
 ├── docs/
+├── env/
 ├── monitoring/
-│
 ├── scripts/
-│   ├── build-debian-template.sh
+├── terraform/
+│   ├── environments/
+│   ├── modules/
+│   └── stacks/
+├── tests/
+├── Makefile
+└── README.md
+```
+
+## Terraform Layout
+
+```text
+terraform/
+├── environments/
+│   ├── dev/
+│   ├── home/
+│   └── prod/
+│
+├── modules/
+│   ├── vm/
+│   ├── network/
+│   ├── docker-host/
+│   ├── monitoring/
 │   └── ...
 │
-├── terraform/
-│   ├── modules/
-│   └── proxmox/
-│
-├── Makefile
-├── README.md
-└── LICENSE
+└── stacks/
+    ├── lab/
+    ├── docker/
+    └── monitoring/
 ```
 
----
+## Technology Stack
 
-# ⚙️ Tech Stack
+| Category         | Technology                |
+| ---------------- | ------------------------- |
+| Hypervisor       | Proxmox VE                |
+| IaC              | Terraform                 |
+| Provisioning     | Cloud-Init + Ansible      |
+| Containers       | Docker                    |
+| Backend          | FastAPI                   |
+| Monitoring       | Prometheus, Grafana, Loki |
+| Operating System | Debian 13                 |
+| Version Control  | Git + GitHub              |
 
-| Category | Technologies |
-|-----------|--------------|
-| Hypervisor | Proxmox VE |
-| IaC | Terraform |
-| OS | Debian 13 Cloud |
-| Virtualization | QEMU / KVM |
-| Containers | Docker |
-| Backend | Python, FastAPI |
-| Monitoring | Prometheus, Grafana, Loki |
-| Automation | Bash |
-| Version Control | Git / GitHub |
+## Getting Started
 
----
-
-# 🚀 Quick Start
-
-Clone the repository
+Clone the repository.
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/InfraLab.git
-cd InfraLab
+git clone https://github.com/ThomaMart/infralab.git
+
+cd infralab
 ```
 
-Build the Debian template
+Initialize Terraform.
 
 ```bash
-make template
+cd terraform/environments/home
+
+terraform init
 ```
 
-Provision infrastructure
+Validate the infrastructure.
 
 ```bash
-make apply
+terraform validate
+
+terraform plan
 ```
 
-Destroy infrastructure
+Or simply use the Makefile.
 
 ```bash
-make destroy
+make fmt
+
+make validate
+
+make plan
 ```
 
----
+## Documentation
 
-# 🎯 Objectives
+Project documentation is available under:
 
-This project focuses on learning and demonstrating practical skills in:
+```text
+docs/
+├── adr/
+├── architecture/
+├── guides/
+├── roadmap/
+└── standards/
+```
 
-- Infrastructure as Code
-- DevOps Automation
-- Linux Administration
-- Cloud-Init
-- Virtualization
-- Networking
-- Observability
-- API-driven Infrastructure
+## Roadmap
 
----
+* Foundation
+* Quality Platform
+* Terraform Platform
+* Ansible Provisioning
+* Docker Runtime
+* Observability
+* FastAPI API
+* CLI
+* Multi-node Infrastructure
+* Kubernetes Integration
 
-# 📈 Roadmap
+## Contributing
 
-- [x] Proxmox API integration
-- [x] Terraform provider
-- [x] Debian Cloud Template
-- [x] Cloud-Init
-- [x] SSH automation
-- [x] Docker deployment
-- [ ] Kubernetes (k3s)
-- [ ] GitHub Actions CI
-- [ ] Ansible integration
-- [ ] Multi-node infrastructure
-- [ ] High Availability
+Please read **CONTRIBUTING.md** before opening an issue or a pull request.
 
----
+## Security
 
-# 📜 License
+Please report vulnerabilities according to **SECURITY.md**.
 
-MIT License
+## License
 
----
-
-<p align="center">
-
-Built with ❤️ using Proxmox, Terraform and Debian.
-
-</p>
+Distributed under the MIT License.

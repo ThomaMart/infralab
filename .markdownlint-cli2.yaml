@@ -1,0 +1,11 @@
+globs:
+  - "**/*.md"
+
+ignores:
+  - node_modules/**
+  - .terraform/**
+  - "**/.terraform/**"
+  - .venv/**
+  - dist/**
+  - build/**
+  - coverage/**
