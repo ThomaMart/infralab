@@ -1,0 +1,4 @@
+---
+ansible_user: debian
+ansible_become: true
+timezone: Europe/Paris

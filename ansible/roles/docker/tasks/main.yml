@@ -1,0 +1,4 @@
+---
+- name: Placeholder
+  ansible.builtin.debug:
+    msg: Docker role will be implemented in the next pack.
