@@ -183,7 +183,7 @@ docs/
 * [x] Cloud-Init
 * [x] SSH automation
 * [x] Docker deployment
-* [ ] Kubernetes (k3s)
+* [x] Kubernetes (k3s)
 * [x] GitHub Actions CI
 * [x] Ansible integration
 * [ ] Multi-node infrastructure

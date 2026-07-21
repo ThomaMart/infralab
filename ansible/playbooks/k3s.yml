@@ -1,0 +1,32 @@
+---
+- name: Install k3s server
+  hosts: k3s_hosts
+  become: true
+
+  tasks:
+
+    - name: Install k3s
+      ansible.builtin.shell: |
+        set -o pipefail
+        curl -sfL https://get.k3s.io | sh -
+      args:
+        executable: /bin/bash
+        creates: /usr/local/bin/k3s
+
+    - name: Enable k3s service
+      ansible.builtin.systemd:
+        name: k3s
+        enabled: true
+        state: started
+
+    - name: Wait for k3s node to be ready
+      ansible.builtin.command: k3s kubectl get nodes
+      register: k3s_nodes
+      until: k3s_nodes.rc == 0
+      retries: 10
+      delay: 5
+      changed_when: false
+
+    - name: Display k3s nodes
+      ansible.builtin.debug:
+        var: k3s_nodes.stdout
