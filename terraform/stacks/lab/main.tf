@@ -5,7 +5,7 @@ module "debian_dev" {
   template_id = 9000
 
   name      = "debian-dev"
-  node_name = "proxmox"
+  node_name = "pve"
 
   memory = 2048
   cores  = 2

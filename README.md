@@ -177,16 +177,17 @@ docs/
 
 ## Roadmap
 
-* Foundation
-* Quality Platform
-* Terraform Platform
-* Ansible Provisioning
-* Docker Runtime
-* Observability
-* FastAPI API
-* CLI
-* Multi-node Infrastructure
-* Kubernetes Integration
+* [x] Proxmox API integration
+* [x] Terraform provider
+* [x] Debian Cloud Template
+* [x] Cloud-Init
+* [x] SSH automation
+* [x] Docker deployment
+* [ ] Kubernetes (k3s)
+* [x] GitHub Actions CI
+* [x] Ansible integration
+* [ ] Multi-node infrastructure
+* [ ] High Availability
 
 ## Contributing
 
