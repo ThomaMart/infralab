@@ -1,4 +1,8 @@
 ---
 ansible_user: debian
+
 ansible_become: true
+
+docker_user: debian
+
 timezone: Europe/Paris

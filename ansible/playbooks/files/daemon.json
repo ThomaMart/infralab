@@ -1,0 +1,7 @@
+{
+  "live-restore": true,
+  "log-driver": "local",
+  "features": {
+    "buildkit": true
+  }
+}
