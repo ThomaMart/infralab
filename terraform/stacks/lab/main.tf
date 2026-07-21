@@ -41,3 +41,25 @@ module "k3s_server" {
   on_boot         = true
   start_on_create = true
 }
+
+module "k3s_agent" {
+  source = "../../modules/vm"
+
+  vm_id       = 103
+  template_id = 9000
+
+  name      = "k3s-agent"
+  node_name = "pve"
+
+  memory = 2048
+  cores  = 2
+
+  bridge  = "vmbr0"
+  storage = "local-lvm"
+
+  username       = var.username
+  ssh_public_key = var.ssh_public_key
+
+  on_boot         = true
+  start_on_create = true
+}

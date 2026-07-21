@@ -1,6 +1,6 @@
 ---
 - name: Install k3s server
-  hosts: k3s_hosts
+  hosts: k3s_server
   become: true
 
   tasks:
@@ -27,6 +27,56 @@
       delay: 5
       changed_when: false
 
+    - name: Read node token
+      ansible.builtin.slurp:
+        src: /var/lib/rancher/k3s/server/node-token
+      register: k3s_node_token
+
     - name: Display k3s nodes
       ansible.builtin.debug:
         var: k3s_nodes.stdout
+
+- name: Join k3s agent to cluster
+  hosts: k3s_agent
+  become: true
+
+  vars:
+    k3s_url: "https://{{ hostvars[groups['k3s_server'][0]]['ansible_host'] }}:6443"
+    k3s_token: "{{ hostvars[groups['k3s_server'][0]]['k3s_node_token']['content'] | b64decode | trim }}"
+
+  tasks:
+
+    - name: Install k3s agent
+      ansible.builtin.shell: |
+        set -o pipefail
+        curl -sfL https://get.k3s.io | sh -
+      args:
+        executable: /bin/bash
+        creates: /usr/local/bin/k3s
+      environment:
+        K3S_URL: "{{ k3s_url }}"
+        K3S_TOKEN: "{{ k3s_token }}"
+
+    - name: Enable k3s-agent service
+      ansible.builtin.systemd:
+        name: k3s-agent
+        enabled: true
+        state: started
+
+- name: Verify cluster
+  hosts: k3s_server
+  become: true
+
+  tasks:
+
+    - name: Wait for all nodes to be ready
+      ansible.builtin.command: k3s kubectl get nodes
+      register: k3s_cluster_nodes
+      until: k3s_cluster_nodes.rc == 0 and 'NotReady' not in k3s_cluster_nodes.stdout
+      retries: 15
+      delay: 5
+      changed_when: false
+
+    - name: Display cluster nodes
+      ansible.builtin.debug:
+        var: k3s_cluster_nodes.stdout

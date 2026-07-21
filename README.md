@@ -186,7 +186,7 @@ docs/
 * [x] Kubernetes (k3s)
 * [x] GitHub Actions CI
 * [x] Ansible integration
-* [ ] Multi-node infrastructure
+* [x] Multi-node infrastructure
 * [ ] High Availability
 
 ## Contributing
